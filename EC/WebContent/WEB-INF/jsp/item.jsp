@@ -34,15 +34,15 @@
 			<div class="row">
 				<div class="col s6">
 					<div class="card">
-						<div class="card-image">
-							<img src="img/${item.fileName}">
+						<div class="card-image"> <!-- ここらあたりが写真 -->
+							<img src="img/${item.fileName}"><!-- ここが写真の名前 -->
 						</div>
 					</div>
 				</div>
 				<div class="col s6">
-					<h4>${item.name}</h4>
-					<h5>${item.price}円</h5>
-					<p>${item.name}</p>
+					<h4>${item.name}</h4><!-- 商品の名前 -->
+					<h5>${item.price}円</h5><!-- 値段 -->
+					<p>${item.detail}</p><!-- ここを商品名→詳細に変更しました -->
 				</div>
 			</div>
 		</div>

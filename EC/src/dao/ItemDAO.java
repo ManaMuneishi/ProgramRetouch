@@ -79,7 +79,7 @@ public class ItemDAO {
 			if (rs.next()) {
 				item.setId(rs.getInt("id"));
 				item.setName(rs.getString("name"));
-				item.setDetail(rs.getString("name"));
+				item.setDetail(rs.getString("detail"));//ここを"name"→"detail"に改。
 				item.setPrice(rs.getInt("price"));
 				item.setFileName(rs.getString("file_name"));
 			}
@@ -109,19 +109,20 @@ public class ItemDAO {
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
-			int startiItemNum = (pageNum - 1) * pageMaxItemCount;
+			//変数名を startiItemNum→ searchedItemNumに変更
+			int searchedItemNum = (pageNum - 1) * pageMaxItemCount;
 			con = DBManager.getConnection();
 
 			if (searchWord.length() == 0) {
 				// 全検索
 				st = con.prepareStatement("SELECT * FROM m_item ORDER BY id ASC LIMIT ?,? ");
-				st.setInt(1, startiItemNum);
+				st.setInt(1, searchedItemNum);
 				st.setInt(2, pageMaxItemCount);
 			} else {
 				// 商品名検索
-				st = con.prepareStatement("SELECT * FROM m_item WHERE name = ?  ORDER BY id ASC LIMIT ?,? ");
-				st.setString(1,searchWord);
-				st.setInt(2, startiItemNum);
+				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE '%?%' ORDER BY id ASC LIMIT ?,? ");
+				st.setString(1, searchWord);
+				st.setInt(2, searchedItemNum);
 				st.setInt(3, pageMaxItemCount);
 			}
 
