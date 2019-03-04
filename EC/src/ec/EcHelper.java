@@ -60,7 +60,7 @@ public class EcHelper {
 	 * @param items
 	 * @return total
 	 */
-	public static int getTotalItemPrice(ArrayList<ItemDataBeans> items) {
+	public static int getTotalItemPrice(ArrayList<ItemDataBeans> items) { //カート内の商品だけのトータル
 		int total = 0;
 		for (ItemDataBeans item : items) {
 			total += item.getPrice();

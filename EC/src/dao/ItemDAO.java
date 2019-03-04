@@ -110,20 +110,21 @@ public class ItemDAO {
 		PreparedStatement st = null;
 		try {
 			//変数名を startiItemNum→ searchedItemNumに変更
-			int searchedItemNum = (pageNum - 1) * pageMaxItemCount;
+			int startiItemNum = (pageNum -1) * pageMaxItemCount; //ここはlimitの始番号を作りたいらしい
+			int ParPageItemNum = pageMaxItemCount + startiItemNum; //①limitの終番号を足しました。
 			con = DBManager.getConnection();
 
 			if (searchWord.length() == 0) {
 				// 全検索
 				st = con.prepareStatement("SELECT * FROM m_item ORDER BY id ASC LIMIT ?,? ");
-				st.setInt(1, searchedItemNum);
-				st.setInt(2, pageMaxItemCount);
+				st.setInt(1, startiItemNum);
+				st.setInt(2, ParPageItemNum);//④ついでにここも揃えて変えました。
 			} else {
 				// 商品名検索
-				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE '%?%' ORDER BY id ASC LIMIT ?,? ");
+				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE '%'?'%' ORDER BY id ASC LIMIT ?,? ");//②ここを変更。
 				st.setString(1, searchWord);
-				st.setInt(2, searchedItemNum);
-				st.setInt(3, pageMaxItemCount);
+				st.setInt(2, startiItemNum);
+				st.setInt(3, ParPageItemNum);//③114で足した終番号を使いました。
 			}
 
 			ResultSet rs = st.executeQuery();

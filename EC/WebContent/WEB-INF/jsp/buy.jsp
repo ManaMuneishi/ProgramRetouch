@@ -20,6 +20,7 @@
 			<div class="col s12">
 				<div class="card grey lighten-5">
 					<div class="card-content">
+
 						<form action="BuyConfirm" method="POST">
 							<div class="row">
 								<table class="bordered">
@@ -60,6 +61,7 @@
 								</div>
 							</div>
 						</form>
+
 					</div>
 				</div>
 			</div>
