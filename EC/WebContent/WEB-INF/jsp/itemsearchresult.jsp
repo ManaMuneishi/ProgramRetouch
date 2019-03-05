@@ -30,6 +30,7 @@
 		<div class="section">
 			<!--   商品情報   -->
 			<div class="row">
+
 				<c:forEach var="item" items="${itemList}" varStatus="status">
 				<div class="col s12 m3">
 					<div class="card">
@@ -43,11 +44,12 @@
 						</div>
 					</div>
 				</div>
-				<c:if test="${(status.index + 1) % 4 == 0}">
+				<c:if test="${(status.index + 1) % 4 == 0}"><!-- 四つ表示したら１行空けるの意味 --> 
 			</div>
 			<div class="row">
 				</c:if>
 				</c:forEach>
+
 			</div>
 		</div>
 		<div class="row center">

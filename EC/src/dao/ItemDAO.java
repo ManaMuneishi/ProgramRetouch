@@ -108,23 +108,25 @@ public class ItemDAO {
 	public static ArrayList<ItemDataBeans> getItemsByItemName(String searchWord, int pageNum, int pageMaxItemCount) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
+
 		try {
-			//変数名を startiItemNum→ searchedItemNumに変更
+
 			int startiItemNum = (pageNum -1) * pageMaxItemCount; //ここはlimitの始番号を作りたいらしい
-			int ParPageItemNum = pageMaxItemCount + startiItemNum; //①limitの終番号を足しました。
+			int PageItemEndNum = pageMaxItemCount + startiItemNum; //①limitの終番号を足しました。
 			con = DBManager.getConnection();
 
 			if (searchWord.length() == 0) {
 				// 全検索
 				st = con.prepareStatement("SELECT * FROM m_item ORDER BY id ASC LIMIT ?,? ");
 				st.setInt(1, startiItemNum);
-				st.setInt(2, ParPageItemNum);//④ついでにここも揃えて変えました。
+				st.setInt(2, PageItemEndNum);//④ついでにここも揃えて変えました。
+
 			} else {
 				// 商品名検索
-				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE '%'?'%' ORDER BY id ASC LIMIT ?,? ");//②ここを変更。
-				st.setString(1, searchWord);
+				st = con.prepareStatement("SELECT * FROM m_item WHERE name LIKE ? ORDER BY id ASC LIMIT ?,? ");//②ここを変更。
+				st.setString(1, "%" + searchWord + "%");//ここ部分一致で重要。LIKEの後に足す諸々はこうする。
 				st.setInt(2, startiItemNum);
-				st.setInt(3, ParPageItemNum);//③114で足した終番号を使いました。
+				st.setInt(3, PageItemEndNum);//③114で足した終番号を使いました。
 			}
 
 			ResultSet rs = st.executeQuery();
@@ -141,6 +143,7 @@ public class ItemDAO {
 			}
 			System.out.println("get Items by itemName has been completed");
 			return itemList;
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new SQLException(e);
@@ -163,7 +166,7 @@ public class ItemDAO {
 		try {
 			con = DBManager.getConnection();
 			st = con.prepareStatement("select count(*) as cnt from m_item where name like ?");
-			st.setString(1, "%" + searchWord + "%");
+			st.setString(1, "%" + searchWord + "%");//ここを参考に部分一致作る
 			ResultSet rs = st.executeQuery();
 			double coung = 0.0;
 			while (rs.next()) {
