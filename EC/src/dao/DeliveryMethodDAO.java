@@ -98,7 +98,7 @@ public class DeliveryMethodDAO {
      *             配送方法の情報に対応するデータを持つJavaBeans
      * @throws SQLException
      */
-	public static DeliveryMethodDataBeans getDeliveryMethodDataBeansByBuyId(int buyId) throws SQLException {
+	public static DeliveryMethodDataBeans getDeliveryMethodDataBeansByBuyId(int buyId) throws SQLException {//ここ参照
 		Connection con = null;
 		PreparedStatement st = null;
 		try {

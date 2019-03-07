@@ -51,7 +51,7 @@ public class BuyDetailDAO {
 	 * @return {BuyDataDetailBeans}
 	 * @throws SQLException
 	 */
-	public ArrayList<BuyDetailDataBeans> getBuyDataBeansListByBuyId(int buyId) throws SQLException {
+	public ArrayList<BuyDetailDataBeans> getBuyDataBeansListByBuyId(int buyId) throws SQLException { //ここ参照
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
@@ -90,7 +90,7 @@ public class BuyDetailDAO {
      *             購入詳細情報のデータを持つJavaBeansのリスト
      * @throws SQLException
      */
-	public static ArrayList<ItemDataBeans> getItemDataBeansListByBuyId(int buyId) throws SQLException {
+	public static ArrayList<ItemDataBeans> getItemDataBeansListByBuyId(int buyId) throws SQLException {//ここ参照
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
@@ -130,5 +130,4 @@ public class BuyDetailDAO {
 			}
 		}
 	}
-
 }

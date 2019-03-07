@@ -45,8 +45,4 @@ public class ItemDataBeans implements Serializable {
 	public void setFileName(String filename) {
 		this.fileName = filename;
 	}
-
-
-
-
 }

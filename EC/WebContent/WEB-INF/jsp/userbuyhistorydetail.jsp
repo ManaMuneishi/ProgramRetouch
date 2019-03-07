@@ -28,11 +28,15 @@
 								</tr>
 							</thead>
 							<tbody>
+							<!--ここをforeachにしました-->
+								<c:forEach var="BuyDataBeans" items="${UserBuyDetailList}">
 								<tr>
-									<td class="center">1234年56月78日90時12分</td>
-									<td class="center">サンプル</td>
-									<td class="center">123456789円</td>
+									<td class="center">${BuyDataBeans.buyDate}</td>
+									<td class="center">${BuyDataBeans.deliveryMethodName}</td>
+									<td class="center">${BuyDataBeans.totalPrice}円</td>
 								</tr>
+								</c:forEach>
+
 							</tbody>
 						</table>
 					</div>
@@ -52,22 +56,13 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td class="center">サンプル商品名1</td>
-									<td class="center">111111111円</td>
-								</tr>
-								<tr>
-									<td class="center">サンプル商品名2</td>
-									<td class="center">222222222円</td>
-								</tr>
-								<tr>
-									<td class="center">サンプル商品名3</td>
-									<td class="center">333333333円</td>
-								</tr>
-								<tr>
-									<td class="center">サンプル</td>
-									<td class="center">123456789円</td>
-								</tr>
+								<!-- 以下サンプル表示をforeachにしました -->
+								<c:forEach var="BuyDataBeans" items="${bdb}">
+									<tr>
+										<td class="center">${bdb.name}</td>
+										<td class="center">${bdb.price}円</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>

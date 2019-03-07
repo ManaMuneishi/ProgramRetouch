@@ -10,7 +10,7 @@ import java.util.Date;
  * @author d-yamaguchi
  *
  */
-public class BuyDataBeans  implements Serializable {
+public class BuyDataBeans implements Serializable {
 	private int id;
 	private int userId;
 	private int totalPrice;
@@ -20,6 +20,22 @@ public class BuyDataBeans  implements Serializable {
 	private String deliveryMethodName;
 	private int deliveryMethodPrice;
 
+	public BuyDataBeans( ){ //名前は必ずコピペしよう。
+	}
+
+	public BuyDataBeans(int id, int userId, int totalPrice, int delivertMethodId, Date buyDate,
+			String deliveryMethodName, int deliveryMethodPrice) { //dateが取れないからとりあえず消してみる
+		super();
+		this.id = id;
+		this.userId = userId;
+		this.totalPrice = totalPrice;
+		this.delivertMethodId = delivertMethodId;
+		this.deliveryMethodName = deliveryMethodName;
+		this.deliveryMethodPrice = deliveryMethodPrice;
+		this.buyDate = buyDate;
+	}
+
+
 
 	public int getId() {
 		return id;
@@ -27,12 +43,14 @@ public class BuyDataBeans  implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public int getUserId() {
 		return userId;
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
+
 	public int getTotalPrice() {
 		return totalPrice;
 	}
@@ -47,12 +65,14 @@ public class BuyDataBeans  implements Serializable {
 	public void setDelivertMethodId(int delivertMethodId) {
 		this.delivertMethodId = delivertMethodId;
 	}
+
 	public Date getBuyDate() {
 		return buyDate;
 	}
 	public void setBuyDate(Date buyDate) {
 		this.buyDate = buyDate;
 	}
+
 	public String getDeliveryMethodName() {
 		return deliveryMethodName;
 	}
@@ -64,6 +84,7 @@ public class BuyDataBeans  implements Serializable {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日HH時mm分");
 		return sdf.format(buyDate);
 	}
+
 	public int getDeliveryMethodPrice() {
 		return deliveryMethodPrice;
 	}
