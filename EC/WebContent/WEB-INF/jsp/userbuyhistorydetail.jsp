@@ -1,4 +1,6 @@
 <%@	page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +21,7 @@
 			<div class="col s10 offset-s1">
 				<div class="card grey lighten-5">
 					<div class="card-content">
+
 						<table>
 							<thead>
 								<tr>
@@ -28,15 +31,14 @@
 								</tr>
 							</thead>
 							<tbody>
-							<!--ここをforeachにしました-->
-								<c:forEach var="BuyDataBeans" items="${UserBuyDetailList}">
-								<tr>
-									<td class="center">${BuyDataBeans.buyDate}</td>
-									<td class="center">${BuyDataBeans.deliveryMethodName}</td>
-									<td class="center">${BuyDataBeans.totalPrice}円</td>
-								</tr>
-								</c:forEach>
 
+							<c:forEach var="UserBuyHistoryBeans" items="${UserBuyDetailList2}">
+									<tr>
+										<td class="center">${UserBuyHistoryBeans.formatDate}</td>
+										<td class="center">${UserBuyHistoryBeans.name}</td>
+										<td class="center">${UserBuyHistoryBeans.totalPrice}円</td>
+									</tr>
+							</c:forEach>
 							</tbody>
 						</table>
 					</div>
@@ -56,11 +58,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<!-- 以下サンプル表示をforeachにしました -->
-								<c:forEach var="BuyDataBeans" items="${bdb}">
+								<c:forEach var="UserBuyHistoryBeans" items="${UserBuyDetailList2}">
 									<tr>
-										<td class="center">${bdb.name}</td>
-										<td class="center">${bdb.price}円</td>
+										<td class="center">${UserBuyHistoryBeans.name}</td>
+										<td class="center">${UserBuyHistoryBeans.price}円</td>
 									</tr>
 								</c:forEach>
 							</tbody>

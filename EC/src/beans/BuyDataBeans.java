@@ -20,22 +20,20 @@ public class BuyDataBeans implements Serializable {
 	private String deliveryMethodName;
 	private int deliveryMethodPrice;
 
-	public BuyDataBeans( ){ //名前は必ずコピペしよう。
+	public BuyDataBeans() {
 	}
 
 	public BuyDataBeans(int id, int userId, int totalPrice, int delivertMethodId, Date buyDate,
-			String deliveryMethodName, int deliveryMethodPrice) { //dateが取れないからとりあえず消してみる
+			String deliveryMethodName, int deliveryMethodPrice) {
 		super();
 		this.id = id;
 		this.userId = userId;
 		this.totalPrice = totalPrice;
 		this.delivertMethodId = delivertMethodId;
+		this.buyDate = buyDate;
 		this.deliveryMethodName = deliveryMethodName;
 		this.deliveryMethodPrice = deliveryMethodPrice;
-		this.buyDate = buyDate;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -57,7 +55,6 @@ public class BuyDataBeans implements Serializable {
 	public void setTotalPrice(int totalPrice) {
 		this.totalPrice = totalPrice;
 	}
-
 
 	public int getDelivertMethodId() {
 		return delivertMethodId;

@@ -39,9 +39,12 @@ public class BuyConfirm extends HttpServlet {
 			int deliveryPrice = userSelectDMB.getPrice(); // 配送料のトータル
 			int totalPrice = cartInItemTotalPrice +  deliveryPrice; //上記二つを合わせた全体料金
 
+			String deliveryName = userSelectDMB.getName();
+
 			BuyDataBeans bdb = new BuyDataBeans();
 			bdb.setUserId((int) session.getAttribute("userId"));
 			bdb.setDeliveryMethodPrice(deliveryPrice);//ここ足しました。
+			bdb.setDeliveryMethodName(deliveryName);
 			bdb.setTotalPrice(totalPrice);
 			bdb.setDelivertMethodId(userSelectDMB.getId());
 

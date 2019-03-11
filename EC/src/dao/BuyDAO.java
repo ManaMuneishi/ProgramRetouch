@@ -27,7 +27,8 @@ public class BuyDAO {
 	public static int insertBuy(BuyDataBeans bdb) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
-		int autoIncKey = -1; //これなに
+		int autoIncKey = -1; //これなに →MYSQLに関する何からしい。
+
 		try {
 			con = DBManager.getConnection();
 			st = con.prepareStatement(
@@ -36,7 +37,7 @@ public class BuyDAO {
 			st.setInt(1, bdb.getUserId());
 			st.setInt(2, bdb.getTotalPrice());
 			st.setInt(3, bdb.getDelivertMethodId());
-			st.setTimestamp(4, new Timestamp(System.currentTimeMillis())); //ここだ
+			st.setTimestamp(4, new Timestamp(System.currentTimeMillis()));
 			st.executeUpdate();
 
 			ResultSet rs = st.getGeneratedKeys();
@@ -44,7 +45,6 @@ public class BuyDAO {
 				autoIncKey = rs.getInt(1);
 			}
 			System.out.println("inserting buy-datas has been completed");
-
 			return autoIncKey;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -89,9 +89,7 @@ public class BuyDAO {
 				bdb.setDeliveryMethodPrice(rs.getInt("price"));
 				bdb.setDeliveryMethodName(rs.getString("name"));
 			}
-
 			System.out.println("searching BuyDataBeans by buyID has been completed");
-
 			return bdb;
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -104,7 +102,7 @@ public class BuyDAO {
 	}
 
 	 /**
-     * 追加：ユーザIDによる購入IDの取得
+     * 追加：ユーザIDによる購入歴の取得1
      * @param user_id
      * @return buy_id
      * @throws SQLException
@@ -116,12 +114,12 @@ public class BuyDAO {
 			con = DBManager.getConnection();
 
 			st = con.prepareStatement(
-					"SELECT A.id, A.user_id, A.total_price, A.delivery_method_id, A.create_date, "
+					"SELECT A.id, A.user_id, A.total_price, A.delivery_method_id, A.create_date, " //ALLで書いた方がいい気がする(が、かぶるカラムをのけてしまいたい。)
 					+ "B.name, B.price "
 					+ "FROM t_buy A "
 					+ "INNER JOIN m_delivery_method B "
 					+ "ON A.delivery_method_id = B.id "
-					+ "WHERE A.user_id = ? ");
+					+ "WHERE A.user_id = ? ORDER BY A.create_date DESC");
 
 			st.setInt(1, userId);
 			ResultSet rs = st.executeQuery();

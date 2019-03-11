@@ -61,11 +61,11 @@
 									<th class="center">購入金額</th>
 								</tr>
 							</thead>
-							<tbody> <!-- foreachはvarを -->
+							<tbody>
 								<c:forEach var="BuyDataBeans" items="${UserBuyDetailList}">
 								<tr>
-									<td class="center"><a href="UserBuyHistoryDetail?buy_id=1" class="btn-floating btn waves-effect waves-light "> <i class="material-icons">details</i></a></td>
-									<td class="center">${BuyDataBeans.buyDate}</td>
+									<td class="center"><a href="UserBuyHistoryDetail?buy_id=${BuyDataBeans.id}" class="btn-floating btn waves-effect waves-light "> <i class="material-icons">details</i></a></td>
+									<td class="center">${BuyDataBeans.formatDate}</td>
 									<td class="center">${BuyDataBeans.deliveryMethodName}</td>
 									<td class="center">${BuyDataBeans.totalPrice}円</td>
 								</tr>

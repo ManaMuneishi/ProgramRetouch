@@ -39,6 +39,9 @@ public class UserData extends HttpServlet {
 			ArrayList<BuyDataBeans> UserBuyDetailList = BuyDAO.getBuyDataBeansListByUserId(userId);
 			//追加:ユーザの購入データをおく。
 			request.setAttribute("UserBuyDetailList",UserBuyDetailList);
+			
+			BuyDataBeans Date = new BuyDataBeans();
+			
 
 			// 入力された内容に誤りがあったとき等に表示するエラーメッセージを格納する
 			String validationMessage = (String) EcHelper.cutSessionAttribute(session, "validationMessage");
